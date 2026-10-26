@@ -6,7 +6,7 @@ import { defineTheme } from '../utils/theme'
 // container that has the padding of the size.
 export default defineTheme({
   slots: {
-    root: 'relative inline-flex items-center rounded-md cursor-text data-disabled:cursor-not-allowed data-disabled:opacity-75 transition-colors',
+    root: 'relative inline-flex items-center rounded-md cursor-text data-disabled:cursor-not-allowed data-disabled:opacity-(--ui-disabled-opacity) transition-colors',
     base: 'flex-1 border-0 bg-transparent text-strong placeholder:text-faint focus:outline-none disabled:cursor-not-allowed',
     // The tags wrap in their own container, so the leading and the trailing stay
     // centered on the box whatever its number of lines
@@ -27,47 +27,47 @@ export default defineTheme({
     ...fieldGroupVariantRoot,
     size: {
       xs: {
-        root: '[--ui-control-px:--spacing(2)] [--ui-control-py:--spacing(1)] [--ui-control-gap:--spacing(1)] [--ui-control-icon:--spacing(4)] text-[calc(var(--text-xs)+var(--ui-control-text-step,0px))]/4',
-        leadingIcon: 'size-(--ui-control-icon)',
-        trailingIcon: 'size-(--ui-control-icon)',
+        root: '[--ui-control-px:--spacing(2)] [--ui-control-py:--spacing(1)] [--ui-control-gap:--spacing(1)] [--ui-control-icon-size:--spacing(4)] text-[calc(var(--text-xs)+var(--ui-control-text-step,0px))]/4',
+        leadingIcon: 'size-(--ui-control-icon-size)',
+        trailingIcon: 'size-(--ui-control-icon-size)',
         item: 'text-[10px]/3',
         itemDeleteIcon: 'size-3'
       },
       sm: {
-        root: '[--ui-control-px:--spacing(2.5)] [--ui-control-py:--spacing(1.5)] [--ui-control-gap:--spacing(1.5)] [--ui-control-icon:--spacing(4)] text-[calc(var(--text-xs)+var(--ui-control-text-step,0px))]/4',
-        leadingIcon: 'size-(--ui-control-icon)',
-        trailingIcon: 'size-(--ui-control-icon)',
+        root: '[--ui-control-px:--spacing(2.5)] [--ui-control-py:--spacing(1.5)] [--ui-control-gap:--spacing(1.5)] [--ui-control-icon-size:--spacing(4)] text-[calc(var(--text-xs)+var(--ui-control-text-step,0px))]/4',
+        leadingIcon: 'size-(--ui-control-icon-size)',
+        trailingIcon: 'size-(--ui-control-icon-size)',
         item: 'text-[10px]/3',
         itemDeleteIcon: 'size-3'
       },
       md: {
-        root: '[--ui-control-px:--spacing(2.5)] [--ui-control-py:--spacing(1.5)] [--ui-control-gap:--spacing(1.5)] [--ui-control-icon:--spacing(5)] text-[calc(var(--text-sm)+var(--ui-control-text-step,0px))]/5',
-        leadingIcon: 'size-(--ui-control-icon)',
-        trailingIcon: 'size-(--ui-control-icon)',
+        root: '[--ui-control-px:--spacing(2.5)] [--ui-control-py:--spacing(1.5)] [--ui-control-gap:--spacing(1.5)] [--ui-control-icon-size:--spacing(5)] text-[calc(var(--text-sm)+var(--ui-control-text-step,0px))]/5',
+        leadingIcon: 'size-(--ui-control-icon-size)',
+        trailingIcon: 'size-(--ui-control-icon-size)',
         item: 'text-xs',
         itemDeleteIcon: 'size-3.5'
       },
       lg: {
-        root: '[--ui-control-px:--spacing(3)] [--ui-control-py:--spacing(2)] [--ui-control-gap:--spacing(2)] [--ui-control-icon:--spacing(5)] text-[calc(var(--text-sm)+var(--ui-control-text-step,0px))]/5',
-        leadingIcon: 'size-(--ui-control-icon)',
-        trailingIcon: 'size-(--ui-control-icon)',
+        root: '[--ui-control-px:--spacing(3)] [--ui-control-py:--spacing(2)] [--ui-control-gap:--spacing(2)] [--ui-control-icon-size:--spacing(5)] text-[calc(var(--text-sm)+var(--ui-control-text-step,0px))]/5',
+        leadingIcon: 'size-(--ui-control-icon-size)',
+        trailingIcon: 'size-(--ui-control-icon-size)',
         item: 'text-xs',
         itemDeleteIcon: 'size-3.5'
       },
       xl: {
-        root: '[--ui-control-px:--spacing(3)] [--ui-control-py:--spacing(2)] [--ui-control-gap:--spacing(2)] [--ui-control-icon:--spacing(6)] text-base',
-        leadingIcon: 'size-(--ui-control-icon)',
-        trailingIcon: 'size-(--ui-control-icon)',
+        root: '[--ui-control-px:--spacing(3)] [--ui-control-py:--spacing(2)] [--ui-control-gap:--spacing(2)] [--ui-control-icon-size:--spacing(6)] text-base',
+        leadingIcon: 'size-(--ui-control-icon-size)',
+        trailingIcon: 'size-(--ui-control-icon-size)',
         item: 'text-sm',
         itemDeleteIcon: 'size-4'
       }
     },
     // The input takes the focus, two levels down from the box
     variant: {
-      outline: { root: 'bg-default ring ring-inset ring-strong outline-accent-focus has-[input:focus-visible]:outline-3 has-[input:focus-visible]:ring-accent' },
-      soft: { root: 'bg-tint hover:bg-soft has-[input:focus]:bg-soft data-disabled:bg-tint outline-accent-focus has-[input:focus-visible]:outline-3' },
-      subtle: { root: 'bg-soft ring ring-inset ring-strong outline-accent-focus has-[input:focus-visible]:outline-3 has-[input:focus-visible]:ring-accent' },
-      ghost: { root: 'bg-transparent hover:bg-soft has-[input:focus]:bg-soft data-disabled:bg-transparent dark:data-disabled:bg-transparent outline-accent-focus has-[input:focus-visible]:outline-3' },
+      outline: { root: 'bg-default ring ring-inset ring-strong outline-accent-focus has-[input:focus-visible]:outline-(length:--ui-focus-width) has-[input:focus-visible]:ring-accent' },
+      soft: { root: 'bg-tint hover:bg-soft has-[input:focus]:bg-soft data-disabled:bg-tint outline-accent-focus has-[input:focus-visible]:outline-(length:--ui-focus-width)' },
+      subtle: { root: 'bg-soft ring ring-inset ring-strong outline-accent-focus has-[input:focus-visible]:outline-(length:--ui-focus-width) has-[input:focus-visible]:ring-accent' },
+      ghost: { root: 'bg-transparent hover:bg-soft has-[input:focus]:bg-soft data-disabled:bg-transparent dark:data-disabled:bg-transparent outline-accent-focus has-[input:focus-visible]:outline-(length:--ui-focus-width)' },
       none: { root: 'bg-transparent' }
     },
     color: colorVariant({ root: '' }),

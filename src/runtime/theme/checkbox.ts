@@ -4,8 +4,8 @@ import { defineTheme } from '../utils/theme'
 // `list` puts focus on the control, which is the click target there. `card` and `table`
 // render the root as a label wrapping everything, so focus belongs on the card itself,
 // as it does whenever the control is `sr-only`.
-export const focusControl = 'outline-accent-focus focus-visible:outline-solid focus-visible:outline-3 focus-visible:ring-accent'
-export const focusCard = 'outline-accent-focus has-focus-visible:outline-3 not-has-disabled:has-focus-visible:border-accent has-focus-visible:z-[1]'
+export const focusControl = 'outline-accent-focus focus-visible:outline-solid focus-visible:outline-(length:--ui-focus-width) focus-visible:ring-accent'
+export const focusCard = 'outline-accent-focus has-focus-visible:outline-(length:--ui-focus-width) not-has-disabled:has-focus-visible:border-accent has-focus-visible:z-[1]'
 
 export default defineTheme({
   slots: {
@@ -44,37 +44,37 @@ export default defineTheme({
     },
     size: {
       xs: {
-        root: '[--ui-control-px:--spacing(2.5)] [--ui-control-py:--spacing(2.5)] [--ui-control-icon:--spacing(2.5)]',
+        root: '[--ui-control-px:--spacing(2.5)] [--ui-control-py:--spacing(2.5)] [--ui-control-icon-size:--spacing(2.5)]',
         base: 'size-3',
-        icon: 'size-(--ui-control-icon)',
+        icon: 'size-(--ui-control-icon-size)',
         container: 'h-4',
         wrapper: 'text-xs'
       },
       sm: {
-        root: '[--ui-control-px:--spacing(3)] [--ui-control-py:--spacing(3)] [--ui-control-icon:--spacing(3)]',
+        root: '[--ui-control-px:--spacing(3)] [--ui-control-py:--spacing(3)] [--ui-control-icon-size:--spacing(3)]',
         base: 'size-3.5',
-        icon: 'size-(--ui-control-icon)',
+        icon: 'size-(--ui-control-icon-size)',
         container: 'h-4',
         wrapper: 'text-xs'
       },
       md: {
-        root: '[--ui-control-px:--spacing(3.5)] [--ui-control-py:--spacing(3.5)] [--ui-control-icon:--spacing(3.5)]',
+        root: '[--ui-control-px:--spacing(3.5)] [--ui-control-py:--spacing(3.5)] [--ui-control-icon-size:--spacing(3.5)]',
         base: 'size-4',
-        icon: 'size-(--ui-control-icon)',
+        icon: 'size-(--ui-control-icon-size)',
         container: 'h-5',
         wrapper: 'text-sm'
       },
       lg: {
-        root: '[--ui-control-px:--spacing(4)] [--ui-control-py:--spacing(4)] [--ui-control-icon:--spacing(4)]',
+        root: '[--ui-control-px:--spacing(4)] [--ui-control-py:--spacing(4)] [--ui-control-icon-size:--spacing(4)]',
         base: 'size-4.5',
-        icon: 'size-(--ui-control-icon)',
+        icon: 'size-(--ui-control-icon-size)',
         container: 'h-5',
         wrapper: 'text-sm'
       },
       xl: {
-        root: '[--ui-control-px:--spacing(4.5)] [--ui-control-py:--spacing(4.5)] [--ui-control-icon:--spacing(4.5)]',
+        root: '[--ui-control-px:--spacing(4.5)] [--ui-control-py:--spacing(4.5)] [--ui-control-icon-size:--spacing(4.5)]',
         base: 'size-5',
-        icon: 'size-(--ui-control-icon)',
+        icon: 'size-(--ui-control-icon-size)',
         container: 'h-6',
         wrapper: 'text-base'
       }
@@ -86,7 +86,7 @@ export default defineTheme({
     },
     disabled: {
       true: {
-        root: 'opacity-75',
+        root: 'opacity-(--ui-disabled-opacity)',
         base: 'cursor-not-allowed',
         label: 'cursor-not-allowed',
         description: 'cursor-not-allowed'
@@ -107,7 +107,7 @@ export default defineTheme({
       indicator: 'hidden',
       class: {
         container: 'h-auto',
-        icon: 'size-[calc(var(--ui-control-icon)+(--spacing(0.5)))]'
+        icon: 'size-[calc(var(--ui-control-icon-size)+(--spacing(0.5)))]'
       }
     },
     {
