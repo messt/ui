@@ -37,7 +37,12 @@ type AppConfigUI = {
 export interface NuxtUIOptions extends Omit<ModuleOptions, 'fonts' | 'colorMode' | 'content'> {
   /** Whether to generate declaration files for auto-imported components. */
   dts?: boolean
-  ui?: AppConfigUI
+  /**
+   * The icons components use, like `close` or `chevronDown`, bundled at build time. The rest
+   * of the theme goes to the Vue plugin: `app.use(ui, { ui })`.
+   * @see https://ui.nuxt.com/docs/getting-started/integrations/icons/vue#theme
+   */
+  icons?: AppConfigUI['icons']
   /**
    * Default props for the `Icon` component, plus build-time icon bundling through
    * `clientBundle`, which mirrors [`@nuxt/icon`'s option](https://github.com/nuxt/icon#client-bundle)
@@ -75,11 +80,6 @@ export interface NuxtUIOptions extends Omit<ModuleOptions, 'fonts' | 'colorMode'
    */
   router?: boolean | 'inertia'
   /**
-   * Enables compatibility layer for InertiaJS
-   * @deprecated Use `router: 'inertia'` instead
-   */
-  inertia?: boolean
-  /**
    * Root directory where the `.nuxt-ui` directory (`#build/ui.css` and `#build/ui/*`) is created.
    * Useful for setups like `electron-vite` where `config.root` points to a sub-directory
    * (e.g. `src/renderer`).
@@ -87,6 +87,21 @@ export interface NuxtUIOptions extends Omit<ModuleOptions, 'fonts' | 'colorMode'
    * @see https://ui.nuxt.com/docs/getting-started/installation/vue#root
    */
   root?: string
+}
+
+/** The options of the Vue plugin, `app.use(ui, options)`. */
+export interface NuxtUIPluginOptions {
+  /**
+   * The theme of your app, the Vue equivalent of the `ui` key in Nuxt's `app.config.ts`.
+   * The icons go to the `icons` option of the Vite plugin, which bundles them.
+   * @see https://ui.nuxt.com/docs/getting-started/theme/components
+   */
+  ui?: Omit<AppConfigUI, 'icons'> & { icons?: never }
+  /**
+   * Custom navigation for links, with `router: false` in the Vite plugin.
+   * @see https://ui.nuxt.com/docs/getting-started/installation/vue#router
+   */
+  router?: (event: MouseEvent, context: { href: string, external: boolean, target?: string | null }) => void
 }
 
 export const runtimeDir = normalize(fileURLToPath(new URL('./runtime', import.meta.url)))
@@ -98,7 +113,8 @@ export const NuxtUIPlugin = createUnplugin<NuxtUIOptions | undefined>((_options 
 
   // `clientBundle` is a build-time concern, so keep it out of the runtime app config.
   const { clientBundle, ...icon } = options.icon || {}
-  const appConfig = defu({ ui: options.ui, colorMode: options.colorMode, icon }, { ui: getDefaultConfig(options.tailwindPrefix) })
+  // The rest of the `ui` config reaches the app through `app.use(ui, { ui })`.
+  const appConfig = defu({ ui: { icons: options.icons }, colorMode: options.colorMode, icon }, { ui: getDefaultConfig(options.tailwindPrefix) })
 
   return [
     NuxtEnvironmentPlugin(options),

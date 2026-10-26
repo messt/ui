@@ -149,7 +149,7 @@ You can customize this icon globally in your `app.config.ts` under `ui.icons.clo
 
 #vue
 :::tip{to="/docs/getting-started/integrations/icons/vue#theme"}
-You can customize this icon globally in your `vite.config.ts` under `ui.icons.close` key.
+You can customize this icon globally in your `vite.config.ts` under `icons.close` key.
 :::
 ::
 
@@ -310,7 +310,7 @@ name: 'toast-example'
 
 ### Stacked toasts
 
-Set the `toaster.expand` prop to `false` on the [App](/docs/components/app#props) component to display stacked toasts (inspired by [Sonner](https://sonner.emilkowal.ski/)).
+Toasts are stacked by default (inspired by [Sonner](https://sonner.emilkowal.ski/)). Set the `toaster.expand` prop to `true` on the [App](/docs/components/app#props) component to display them all at once.
 
 ```vue [app.vue]
 <script setup lang="ts">
@@ -325,7 +325,7 @@ const toaster = { expand: true }
 ```
 
 ::tip
-You can hover over the toasts to expand them. This will also pause the timer of the toasts.
+You can hover over the stacked toasts to expand them. This will also pause the timer of the toasts.
 ::
 
 ::component-example

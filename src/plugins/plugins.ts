@@ -8,11 +8,12 @@ import type { NuxtUIOptions } from '../unplugin'
 
 /**
  * This plugin installs the Vue plugins that stand in for what Nuxt provides
- * (icons, head, router, color mode) and registers the prose components, through
+ * (app config, icons, head, router, color mode) and registers the prose components, through
  * `@nuxt/ui/vue-plugin`.
  */
 export default function PluginsPlugin(options: NuxtUIOptions) {
   const plugins = [
+    resolvePathSync('./vue/plugins/app-config', { extensions: ['.ts', '.mjs', '.js'], url: runtimeUrl }),
     resolvePathSync('./vue/plugins/icons', { extensions: ['.ts', '.mjs', '.js'], url: runtimeUrl }),
     resolvePathSync('./vue/plugins/head', { extensions: ['.ts', '.mjs', '.js'], url: runtimeUrl }),
     resolvePathSync('./vue/plugins/router', { extensions: ['.ts', '.mjs', '.js'], url: runtimeUrl })
@@ -22,7 +23,7 @@ export default function PluginsPlugin(options: NuxtUIOptions) {
     plugins.push(resolvePathSync('./vue/plugins/color-mode', { extensions: ['.ts', '.mjs', '.js'], url: runtimeUrl }))
   }
 
-  const proseComponents = (options.prose || options.mdc)
+  const proseComponents = options.prose
     ? globSync(['**/*.vue'], { cwd: join(runtimeDir, 'components/prose'), absolute: true })
     : []
 
